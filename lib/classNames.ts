@@ -1,0 +1,1 @@
+export const centerItems = "flex flex-row items-center";

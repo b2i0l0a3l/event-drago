@@ -1,0 +1,83 @@
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["fullTextSearchPostgres"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+} 
+
+
+enum Plan{
+  FREE
+  PRO
+}
+
+model User{
+    id String @id
+    email String @unique
+    plan Plan @default(FREE)
+    createdAt DateTime  @default(now())
+    updatedAt DateTime  @updatedAt
+    apiKey    String   @unique @default(cuid()) 
+    discordId String?
+    subscriptions Quota[]
+    events        Event[]
+    categories    Category[] 
+    @@index([email, apiKey])
+
+}
+model Quota {
+  id     String @id @default(cuid())
+  user   User   @relation(fields: [userId], references: [id])
+  userId String @unique
+
+  year  Int
+  month Int
+  count Int @default(0)
+
+  updatedAt DateTime @updatedAt
+}
+
+model Category{
+    id String @id @default(uuid())
+    name String @db.Text
+    events Event[]
+    userId String 
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+    color String @default("#98FB98") 
+    icon String @default("📂") 
+    user User @relation(fields: [userId],references: [id],onDelete: Cascade)
+  @@unique([name, userId])
+
+}
+
+
+enum DeliveryStatus {
+  PENDING
+  DELIVERED
+  FAILED
+}
+
+model Event {
+  id               String @id @default(cuid())
+  formattedMessage String
+
+  user   User   @relation(fields: [userId], references: [id])
+  userId String
+
+  name   String
+  fields Json
+
+  deliveryStatus DeliveryStatus @default(PENDING)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  eventCategory   Category? @relation(fields: [eventCategoryId], references: [id])
+  eventCategoryId String?
+
+  @@index([createdAt])
+}
