@@ -12,7 +12,7 @@ export default function AddCategoryButton() {
       <Button
         onClick={() => setIsOpen((prev) => !prev)}
         type="button"
-        className="gap-2 px-6 rounded-full font-semibold shadow-md hover:shadow-lg transition-all"
+        className="gap-2 px-6 py-5 cursor-pointer rounded-lg font-semibold shadow-md hover:shadow-lg transition-all"
         variant="default"
       >
         Add Category <PlusIcon className="w-4 h-4" />

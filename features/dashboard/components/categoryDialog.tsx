@@ -16,6 +16,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { Form, FormField, FormItem, FormControl, FormMessage, FormLabel } from "@/components/ui/Form";
+import { useQueryClient } from "@tanstack/react-query";
 
 const colorsHex = [
   "#98FB98",
@@ -47,6 +48,7 @@ export default function CategoryDialog({
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
 }) {
+  const queryClient = useQueryClient();
   const [isLoading, setIsLoading] = useState(false);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -63,6 +65,7 @@ export default function CategoryDialog({
       const response = await axios.post("/api/v1/category", values);
       if (response.data) {
         setIsOpen(false);
+        queryClient.invalidateQueries({ queryKey: ["categories"] });
       }
       toast.success("Category added successfully");
     } catch (error) {

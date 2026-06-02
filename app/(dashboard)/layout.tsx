@@ -7,6 +7,8 @@ import { ThemeProvider } from "@/components/Provider/theme-provider";
 import SideBar from "@/components/layout/sideBar/SideBar";
 import { Toaster } from "@/components/ui/sonner";
 
+import { QueryProvider } from "@/components/Provider/QueryProvider";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -36,19 +38,23 @@ export default function RootLayout({
      
       <body className="min-h-full flex flex-col">
         <ClerkProvider>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-          <div className="flex flex-row">
-            <SideBar/>
-            {children}
-          </div>
-          <Toaster/>
+          <QueryProvider>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+            >
+            <div className="flex flex-row h-screen w-screen overflow-hidden bg-background">
+              <SideBar/>
+              <main className="flex-1 min-w-0 h-full overflow-y-auto bg-slate-50/40 dark:bg-slate-950/20">
+                {children}
+              </main>
+            </div>
+            <Toaster/>
 
-          </ThemeProvider>
+            </ThemeProvider>
+          </QueryProvider>
 
         </ClerkProvider>
       </body>
