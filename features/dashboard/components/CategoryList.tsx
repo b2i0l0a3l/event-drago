@@ -17,7 +17,6 @@ export default function CategoryList({
       return result || [];
     },
     initialData: initialCategories,
-    refetchInterval: 5000,
   });
 
   return (

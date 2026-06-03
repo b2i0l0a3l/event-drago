@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
 import { useState } from "react";
@@ -5,7 +7,7 @@ import { createCheckout } from "../../actions/createCheckout";
 import { toast } from "sonner";
 
 export default function PorPlanButton({isPro}: {isPro: boolean}){
-     const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const handleUpgrade = async () => {
     try {
       setIsLoading(true);

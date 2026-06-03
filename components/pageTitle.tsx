@@ -12,7 +12,7 @@ export default function PageTitle({ title ,children}: { title: string,children?:
                 <Link href="/dashboard" className="p-2 hover:bg-accent border dark:border-slate-800 hover:text-accent-foreground transition-colors rounded-full cursor-pointer">
                     <ArrowLeft className="w-6 h-6" />
                 </Link>
-                <h1 className="text-3xl font-extrabold tracking-tight text-slate-900 dark:text-slate-50">{title}</h1>
+                <h1 className="text-3xl font-extrabold tracking-tight text-slate-900 dark:text-slate-50 max-sm:text-2xl">{title}</h1>
                 </div> 
                 {children}
             </div>

@@ -8,8 +8,8 @@ import GoToDashboardButton from "./GoToDashboardButton";
 export default function LandingClient() {
 
   return (
-    <div className="flex flex-col min-h-screen bg-slate-50 dark:bg-[#0A0A0A] overflow-hidden">
-      <div className="absolute top-0 left-0 right-0 h-[500px] w-full bg-gradient-to-b from-blue-500/10 via-purple-500/5 to-transparent pointer-events-none" />
+    <div className="flex flex-col min-h-screen bg-slate-50 dark:bg-[#0A0A0A] overflow-x-hidden">
+      <div className="absolute top-0 left-0 right-0 h-[500px] w-full bg-linear-to-b from-blue-500/10 via-purple-500/5 to-transparent pointer-events-none" />
       <div className="absolute -top-40 -right-40 w-[500px] h-[500px] bg-purple-500/20 blur-[100px] rounded-full mix-blend-multiply dark:mix-blend-screen pointer-events-none" />
       <div className="absolute top-20 -left-20 w-[400px] h-[400px] bg-blue-500/20 blur-[100px] rounded-full mix-blend-multiply dark:mix-blend-screen pointer-events-none" />
 
@@ -30,7 +30,7 @@ export default function LandingClient() {
         </div>
         
         <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-slate-900 dark:text-white max-w-4xl mb-6">
-          Monitor your <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-600">Events</span> in Real-Time
+          Monitor your <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-500 to-purple-600">Events</span> in Real-Time
         </h1>
         
         <p className="text-lg md:text-xl text-slate-600 dark:text-slate-400 max-w-2xl mb-10 leading-relaxed">

@@ -15,6 +15,8 @@ import { getEvents } from "../actions/getEvents";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+import DeleteCategoryButton from "./DeleteCategoryButton";
 
 function formatRelativeTime(date: Date) {
   const now = new Date();
@@ -44,15 +46,16 @@ export default function CategoryCard({
       const result = await getEvents({ categoryId: category.id });
       return result || [];
     },
-    refetchInterval: 5000,
   });
+  
+  
 
   const eventsThisMonth = events?.length || 0;
   const lastEvent = events?.[0];
 
   return (
-    <Link href={`/dashboard/${category.name}`} className="block group">
-      <Card className="h-full border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/50 hover:shadow-md hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-300 rounded-xl overflow-hidden cursor-pointer">
+    <div className="block group relative">
+      <Card className="h-full border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/50 hover:shadow-md hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-300 rounded-xl overflow-hidden cursor-default">
         <CardHeader className="pb-4">
           <div className="flex items-center justify-between w-full">
             <div className="flex items-center gap-4">
@@ -110,9 +113,7 @@ export default function CategoryCard({
           </div>
         </CardContent>
         <CardFooter className="flex items-center justify-between">
-          <Button variant="destructive">
-            <Trash2Icon className="size-4" />
-          </Button>
+          <DeleteCategoryButton categoryId={category.id} />
           <Link href={`/dashboard/${category.name}`} className="block group">
             <Button
               type="button"
@@ -124,6 +125,6 @@ export default function CategoryCard({
           </Link>
         </CardFooter>
       </Card>
-    </Link>
+    </div>
   );
 }

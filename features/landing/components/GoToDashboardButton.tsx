@@ -1,12 +1,12 @@
+"use client";
 import { useUser } from "@clerk/nextjs";
 import { ArrowRight, Shield, ChevronRight } from "lucide-react";
 import Link from "next/link";
-import Image from "next/image";
 import { Button } from "@/components/ui/button";
 
 export default function GoToDashboardButton() {
   const { isLoaded, isSignedIn } = useUser();
-
+ 
     return (<>
      {!isLoaded ? (
             <Button disabled className="w-full sm:w-auto h-12 px-8 rounded-full">
