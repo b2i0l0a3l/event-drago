@@ -14,7 +14,7 @@ export default function Navbar(){
                         <h1 className="font-bold text-xl cursor-pointer">Drago<span className="text-blue-600">Event</span></h1>
                     </Link>
                     <nav className="hidden sm:flex items-center gap-4">
-                        <Link href="/dashboard/pricing" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+                        <Link href="/pricing" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
                             Pricing
                         </Link>
                     </nav>

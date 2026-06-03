@@ -8,13 +8,13 @@ import { toast } from "sonner";
 import { Plan } from "@prisma/client";
 
 interface PricingClientProps {
-  currentPlan: Plan;
-  eventCount: number;
+  currentPlan?: Plan;
+  eventCount?: number;
 }
 
 const FREE_LIMIT = 100;
 
-export default function PricingClient({ currentPlan, eventCount }: PricingClientProps) {
+export default function PricingClient({ currentPlan = "FREE", eventCount }: PricingClientProps) {
   const [isLoading, setIsLoading] = useState(false);
 
   const handleUpgrade = async () => {
@@ -39,12 +39,13 @@ export default function PricingClient({ currentPlan, eventCount }: PricingClient
   };
 
   const isPro = currentPlan === "PRO";
-  const usagePercent = isPro ? 0 : Math.min((eventCount / FREE_LIMIT) * 100, 100);
-  const isOverLimit = !isPro && eventCount >= FREE_LIMIT;
+  const showUsage = eventCount !== undefined;
+  const usagePercent = isPro || !showUsage ? 0 : Math.min((eventCount / FREE_LIMIT) * 100, 100);
+  const isOverLimit = !isPro && showUsage && eventCount >= FREE_LIMIT;
 
   return (
     <div className="flex flex-col max-w-5xl mx-auto px-4 py-8">
-      {!isPro && (
+      {!isPro && showUsage && (
         <div className={`mb-10 p-6 rounded-2xl border ${
           isOverLimit 
             ? "bg-red-50 dark:bg-red-900/10 border-red-200 dark:border-red-800" 
@@ -85,7 +86,7 @@ export default function PricingClient({ currentPlan, eventCount }: PricingClient
         </div>
       )}
 
-      {isPro && (
+      {isPro && showUsage && (
         <div className="mb-10 p-6 rounded-2xl border bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/10 dark:to-purple-900/10 border-blue-200 dark:border-blue-800">
           <div className="flex items-center gap-3">
             <Sparkles className="w-6 h-6 text-blue-600 dark:text-blue-400" />
