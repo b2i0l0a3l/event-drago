@@ -24,6 +24,10 @@ export const metadata: Metadata = {
   description: "Drago Event Monitor",
 };
 
+import DashboardLayout from "@/components/layout/DashboardLayout";
+
+// ... [rest of imports are handled by replacing the entire layout div]
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -45,12 +49,9 @@ export default function RootLayout({
               enableSystem
               disableTransitionOnChange
             >
-            <div className="flex flex-row h-screen w-screen overflow-hidden bg-background">
-              <SideBar/>
-              <main className="flex-1 min-w-0 h-full overflow-y-auto bg-slate-50/40 dark:bg-slate-950/20">
-                {children}
-              </main>
-            </div>
+            <DashboardLayout>
+              {children}
+            </DashboardLayout>
             <Toaster/>
 
             </ThemeProvider>

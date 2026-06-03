@@ -13,11 +13,6 @@ export default function Navbar(){
                         <Image src="/icon.png" alt="DragoEvent" width={28} height={28} className="rounded-lg" />
                         <h1 className="font-bold text-xl cursor-pointer">Drago<span className="text-blue-600">Event</span></h1>
                     </Link>
-                    <nav className="hidden sm:flex items-center gap-4">
-                        <Link href="/pricing" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
-                            Pricing
-                        </Link>
-                    </nav>
                 </div>
                 <div className="flex items-center space-x-2">
                    <NavbarRight/> 
