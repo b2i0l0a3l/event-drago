@@ -3,7 +3,6 @@ import { NextRequest, NextResponse } from "next/server";
 import { discord } from "@/lib/discord-client";
 
 export async function POST(req: NextRequest) {
-  console.log("cccccccccccccc");
   const authHeader = req.headers.get("Authorization");
   if (!authHeader || !authHeader.startsWith("Bearer ")) {
     return NextResponse.json({ error: "Missing API Key" }, { status: 401 });
@@ -15,6 +14,24 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "User not found" }, { status: 404 });
   if (user.apiKey !== apiKey)
     return NextResponse.json({ error: "Invalid API Key" }, { status: 401 });
+
+  if (user.plan === "FREE") {
+    const now = new Date();
+    const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
+    const eventCount = await db.event.count({
+      where: {
+        userId: user.id,
+        createdAt: { gte: startOfMonth },
+      },
+    });
+
+    if (eventCount >= 100) {
+      return NextResponse.json(
+        { error: "Monthly event limit reached. Upgrade to PRO for unlimited events." },
+        { status: 429 },
+      );
+    }
+  }
 
   const body = await req.json();
   const { name, fields, formattedMessage } = body;
