@@ -35,7 +35,7 @@ export default function PricingClient({
       <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
         <SimplePlan isPro={isPro} />
 
-        <div className="flex flex-col p-8 bg-gradient-to-b from-blue-900/5 to-purple-900/5 dark:from-blue-500/10 dark:to-purple-500/10 rounded-3xl border-2 border-blue-500 dark:border-blue-600 shadow-xl relative overflow-hidden">
+        <div className="flex flex-col p-8 gradient-to-b from-blue-900/5 to-purple-900/5 dark:from-blue-500/10 dark:to-purple-500/10 rounded-3xl border-2 border-blue-500 dark:border-blue-600 shadow-xl relative overflow-hidden">
           <ProPlan isPro={isPro} />
         </div>
       </div>

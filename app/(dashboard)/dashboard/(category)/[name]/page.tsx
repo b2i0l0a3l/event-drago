@@ -24,8 +24,7 @@ export default async function CategoryPage({
     <div className="flex flex-col w-full">
       <CategoryClient 
         category={category} 
-        events={events || []} 
-        apiKey={(apiKey as string) || "YOUR_API_KEY"} 
+        events={events || []}  
       />
     </div>
   );

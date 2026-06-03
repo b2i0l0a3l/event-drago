@@ -20,15 +20,15 @@ export default function SimplePlan({isPro}: {isPro: boolean}){
 
           <ul className="space-y-4 mb-8 flex-1">
             <li className="flex items-center text-slate-600 dark:text-slate-300">
-              <Check className="w-5 h-5 text-emerald-500 mr-3 flex-shrink-0" />
+              <Check className="w-5 h-5 text-emerald-500 mr-3 shrink-0" />
               <span>Up to 100 events / month</span>
             </li>
             <li className="flex items-center text-slate-600 dark:text-slate-300">
-              <Check className="w-5 h-5 text-emerald-500 mr-3 flex-shrink-0" />
+              <Check className="w-5 h-5 text-emerald-500 mr-3 shrink-0" />
               <span>Discord DM Notifications</span>
             </li>
             <li className="flex items-center text-slate-600 dark:text-slate-300">
-              <Check className="w-5 h-5 text-emerald-500 mr-3 flex-shrink-0" />
+              <Check className="w-5 h-5 text-emerald-500 mr-3 shrink-0" />
               <span>Basic Event History</span>
             </li>
           </ul>
